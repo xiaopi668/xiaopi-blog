@@ -1,0 +1,48 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import { useTranslations, getAllTags, filterPostsByLang } from '../../lib/i18n';
+
+export async function getStaticPaths() {
+  return [
+    { params: { lang: 'zh' } },
+    { params: { lang: 'en' } },
+  ];
+}
+
+const { lang } = Astro.params as { lang: 'zh' | 'en' };
+const t = useTranslations(lang);
+const allPosts = await getCollection('posts');
+const langPosts = filterPostsByLang(allPosts, lang);
+
+const tagCounts = new Map<string, number>();
+langPosts.forEach((post) => {
+  post.data.tags?.forEach((tag) => {
+    tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1);
+  });
+});
+const sortedTags = [...tagCounts.entries()].sort((a, b) => b[1] - a[1]);
+---
+
+<Layout lang={lang} title={t('tags.title')}>
+  <section>
+    <h1 class="text-3xl font-bold mb-8">{t('tags.title')}</h1>
+    <div class="flex flex-wrap gap-3">
+      {sortedTags.map(([tag, count]) => (
+        <a
+          href={`/${lang}/posts?tag=${tag}`}
+          class="px-4 py-2 rounded-full text-sm font-medium border transition-all hover:shadow-md"
+          style="border-color: var(--border); color: var(--text); background-color: var(--bg);"
+        >
+          #{tag}
+          <span class="ml-1" style="color: var(--muted)">({count})</span>
+        </a>
+      ))}
+    </div>
+    {sortedTags.length === 0 && (
+      <p class="text-center py-12" style="color: var(--muted)">
+        {lang === 'zh' ? '暂无标签' : 'No tags yet'}
+      </p>
+    )}
+  </section>
+</Layout>

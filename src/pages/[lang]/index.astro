@@ -1,0 +1,36 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PostCard from '../../components/ui/PostCard.astro';
+import { getCollection } from 'astro:content';
+import { getLangFromUrl, useTranslations, filterPostsByLang } from '../../lib/i18n';
+
+export async function getStaticPaths() {
+  return [
+    { params: { lang: 'zh' } },
+    { params: { lang: 'en' } },
+  ];
+}
+
+const { lang } = Astro.params as { lang: 'zh' | 'en' };
+const t = useTranslations(lang);
+const allPosts = await getCollection('posts');
+const posts = filterPostsByLang(allPosts, lang).slice(0, 10);
+---
+
+<Layout lang={lang}>
+  <section class="mb-12">
+    <h1 class="text-4xl font-bold mb-3">{t('site.description')}</h1>
+    <p style="color: var(--muted);">{t('home.recent')}</p>
+  </section>
+
+  <section>
+    <div class="grid gap-6">
+      {posts.map((post) => (
+        <PostCard post={post} lang={lang} />
+      ))}
+    </div>
+    {posts.length === 0 && (
+      <p class="text-center py-12" style="color: var(--muted)">暂无文章</p>
+    )}
+  </section>
+</Layout>
