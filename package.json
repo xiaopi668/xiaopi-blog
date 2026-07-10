@@ -12,13 +12,9 @@
     "preview": "astro preview",
     "astro": "astro",
     "search:index": "pagefind --site dist",
-    "generate-types": "wrangler types"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": ["esbuild", "sharp", "workerd"]
+    "generate-types": "astro sync"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^14.1.2",
     "@astrojs/mdx": "^7.0.2",
     "@astrojs/react": "^6.0.1",
     "@astrojs/rss": "^4.0.19",
@@ -31,7 +27,6 @@
     "pagefind": "^1.5.2",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
-    "tailwindcss": "^4.3.2",
-    "wrangler": "^4.110.0"
+    "tailwindcss": "^4.3.2"
   }
 }
