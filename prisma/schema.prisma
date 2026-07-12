@@ -1,0 +1,98 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id        String    @id @default(cuid())
+  username  String    @unique
+  name      String
+  email     String?
+  password  String
+  image     String?
+  role      String    @default("admin")
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  posts     Post[]
+  media     Media[]
+  comments  Comment[]
+  likes     Like[]
+}
+
+model Post {
+  id         String    @id @default(cuid())
+  title      String
+  slug       String    @unique
+  content    String
+  excerpt    String?
+  coverImage String?
+  published  Boolean   @default(false)
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  authorId   String
+  author     User      @relation(fields: [authorId], references: [id])
+  tags       PostTag[]
+  viewCount  Int       @default(0)
+  comments   Comment[]
+  likes      Like[]
+}
+
+model Tag {
+  id    String    @id @default(cuid())
+  name  String    @unique
+  slug  String    @unique
+  posts PostTag[]
+}
+
+model PostTag {
+  postId String
+  tagId  String
+  post   Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+  tag    Tag  @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([postId, tagId])
+}
+
+model Media {
+  id         String   @id @default(cuid())
+  filename   String
+  url        String
+  mimeType   String
+  size       Int
+  width      Int?
+  height     Int?
+  createdAt  DateTime @default(now())
+  uploadedId String
+  uploadedBy User     @relation(fields: [uploadedId], references: [id])
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  content   String
+  createdAt DateTime @default(now())
+  postId    String
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model Like {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  postId    String
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@unique([postId, userId])
+}
+
+model SiteSetting {
+  id    String @id @default(cuid())
+  key   String @unique
+  value String
+}
