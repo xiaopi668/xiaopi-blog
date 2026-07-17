@@ -76,10 +76,8 @@ export function TagFilter({ tags, posts }: { tags: TagItem[]; posts: PostItem[] 
 
       {filtered.length > 0 ? (
         <div className="grid gap-6 md:grid-cols-2">
-          {filtered.map((post, i) => (
-            <div key={post.id} className="animate-fade-in" style={{ animationDelay: `${i * 80}ms` }}>
-              <PostCard post={post} />
-            </div>
+          {filtered.map((post) => (
+            <PostCard key={post.id} post={post} />
           ))}
         </div>
       ) : (

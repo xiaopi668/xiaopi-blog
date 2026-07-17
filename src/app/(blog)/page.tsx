@@ -26,11 +26,9 @@ export default async function HomePage() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative mb-20 pt-8 pb-16">
-
-
+      <section className="relative mb-16 pt-8 pb-12">
         <div className="relative text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-primary text-xs font-medium mb-6 animate-fade-in">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-primary text-xs font-medium mb-6">
             <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
             个人博客
           </div>
@@ -60,14 +58,22 @@ export default async function HomePage() {
             </a>
           </div>
         </div>
-
       </section>
 
-      {/* Posts Section */}
+      {/* Posts — extra ambient tint so glass has something to blur */}
       <section className="relative">
+        <div
+          className="pointer-events-none absolute -inset-x-8 -top-8 bottom-0 -z-10 rounded-3xl opacity-80"
+          aria-hidden
+          style={{
+            background:
+              "radial-gradient(ellipse 70% 50% at 20% 30%, hsl(239 84% 70% / 0.18) 0%, transparent 55%)," +
+              "radial-gradient(ellipse 60% 45% at 85% 40%, hsl(271 91% 70% / 0.14) 0%, transparent 55%)," +
+              "radial-gradient(ellipse 50% 40% at 50% 90%, hsl(330 100% 75% / 0.12) 0%, transparent 50%)",
+          }}
+        />
         <TagFilter tags={tags} posts={posts} />
       </section>
-
     </div>
   );
 }

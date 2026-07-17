@@ -5,6 +5,7 @@
 :root {
   --glass-alpha: 0.5;
   --glass-blur: 24px;
+  --glass-refraction: 50;
   --bg-custom-color: transparent;
 }
 
@@ -210,17 +211,16 @@ body::after {
 
 
 
-/* Liquid Glass effect */
+/* Glass — only blur/saturate (no url() SVG filters). Parent transform/isolation breaks this. */
 .glass, .glass-card {
   position: relative;
-  background: hsl(0 0% 100% / var(--glass-alpha, 0.5));
-  backdrop-filter: blur(var(--glass-blur, 24px)) saturate(1.5) brightness(1.2) contrast(1.15);
-  -webkit-backdrop-filter: blur(var(--glass-blur, 24px)) saturate(1.5) brightness(1.2) contrast(1.15);
-  border: 1px solid hsl(0 0% 100% / 0.2);
+  background: hsl(0 0% 100% / var(--glass-alpha, 0.45));
+  backdrop-filter: blur(var(--glass-blur, 24px)) saturate(1.6) brightness(1.15);
+  -webkit-backdrop-filter: blur(var(--glass-blur, 24px)) saturate(1.6) brightness(1.15);
+  border: 1px solid hsl(0 0% 100% / 0.28);
   box-shadow:
     0 4px 24px -6px hsl(0 0% 0% / 0.12),
-    0 0 0 1px hsl(0 0% 100% / 0.08) inset;
-  isolation: isolate;
+    0 0 0 1px hsl(0 0% 100% / 0.1) inset;
 }
 
 .dark .glass, .dark .glass-card {

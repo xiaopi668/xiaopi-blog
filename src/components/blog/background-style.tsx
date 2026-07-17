@@ -94,10 +94,11 @@ export function BackgroundStyle() {
             inset: 0;
             z-index: -2;
             background:
-              radial-gradient(ellipse 80% 60% at 0% 10%, hsl(239 84% 70% / 0.15) 0%, transparent 60%),
-              radial-gradient(ellipse 60% 50% at 100% 20%, hsl(271 91% 70% / 0.12) 0%, transparent 60%),
-              radial-gradient(ellipse 50% 40% at 50% 80%, hsl(330 100% 75% / 0.1) 0%, transparent 60%),
-              radial-gradient(ellipse 70% 50% at 30% 60%, hsl(190 100% 70% / 0.08) 0%, transparent 50%);
+              radial-gradient(ellipse 80% 60% at 0% 10%, hsl(239 84% 70% / 0.22) 0%, transparent 60%),
+              radial-gradient(ellipse 60% 50% at 100% 20%, hsl(271 91% 70% / 0.18) 0%, transparent 60%),
+              radial-gradient(ellipse 55% 45% at 50% 55%, hsl(239 84% 70% / 0.12) 0%, transparent 55%),
+              radial-gradient(ellipse 50% 40% at 50% 80%, hsl(330 100% 75% / 0.16) 0%, transparent 60%),
+              radial-gradient(ellipse 70% 50% at 30% 60%, hsl(190 100% 70% / 0.12) 0%, transparent 50%);
             background-blend-mode: normal;
           }
         `}</style>

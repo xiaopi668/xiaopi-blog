@@ -35,7 +35,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   if (!post) notFound();
 
   return (
-    <article className="max-w-3xl mx-auto animate-fade-in-up">
+    <article className="max-w-3xl mx-auto animate-fade-in-up glass rounded-2xl p-6 md:p-8">
       <Link
         href="/posts"
         className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary transition-colors mb-6 group"

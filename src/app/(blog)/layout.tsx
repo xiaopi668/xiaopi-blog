@@ -3,14 +3,12 @@ import { BlogFooter } from "@/components/blog/footer";
 import { PageTransition } from "@/components/page-transition";
 import { ProfileSidebar } from "@/components/blog/profile-sidebar";
 import { WidgetSidebar } from "@/components/widgets/widget-sidebar";
-import { LiquidGlassFilter } from "@/components/blog/liquid-glass-filter";
 import { AdaptiveTextContrast } from "@/components/blog/adaptive-text";
 import { FloatingBlobs } from "@/components/blog/floating-blobs";
 
 export default function BlogLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <LiquidGlassFilter />
       <AdaptiveTextContrast />
       <FloatingBlobs />
       <BlogHeader />

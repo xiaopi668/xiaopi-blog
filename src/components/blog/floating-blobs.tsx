@@ -72,12 +72,17 @@ export function FloatingBlobs() {
       />
       <div
         data-blob
-        className="absolute top-2/3 right-1/4 w-72 h-72 bg-cyan-400/15 rounded-full blur-3xl transition-opacity duration-[3000ms]"
-        style={{ opacity: 0.3 + Math.random() * 0.25 }}
+        className="absolute top-2/3 right-1/4 w-72 h-72 bg-cyan-400/20 rounded-full blur-3xl transition-opacity duration-[3000ms]"
+        style={{ opacity: 0.35 + Math.random() * 0.25 }}
       />
       <div
         data-blob
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-indigo-500/10 via-purple-500/10 to-pink-500/10 rounded-full blur-3xl"
+        className="absolute top-[70%] left-[10%] w-[420px] h-[420px] bg-indigo-400/18 rounded-full blur-3xl transition-opacity duration-[3000ms]"
+        style={{ opacity: 0.35 + Math.random() * 0.2 }}
+      />
+      <div
+        data-blob
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-indigo-500/15 via-purple-500/12 to-pink-500/12 rounded-full blur-3xl"
         style={{ animation: "spin-slow 20s linear infinite" }}
       />
     </div>
